@@ -19,7 +19,7 @@ to install git from command line -
 to check version of git -
 >> git --version
 
-to copy a repository from one computer to another computer along with history of commits - 
+to copy a repository from one computer to another computer along with history of commits. cloning can be done b/w two computers and github&pc - 
 >> git clone github_url_of_repo_to_be_cloned
 
 to roll back to a previous version of the code (basically, to find a bug)- 
@@ -82,11 +82,22 @@ to visualise branch structure in a readable way-
 
 GITHUB COMMANDS
 
+A remote in a local repo is actually a reference to the github repository. It is used to push and pull from github. It is also used to clone. A remote repository called origin pointing to the repo to be cloned automatically gets setup. So, cloning is effectively equal to creating a remote pointing to the repo and pulling changes to the remote.
+
 to view a remote repository -
 >> git remote -v
 
 to create a remote repository -
->> git remote add remote_name
+>> git remote add remote_url
 
-to push branch into remote repository -
+to push branch into a github remote repository -
 >> git push remote_name branch_name
+
+to pull branch from a github remote repository -
+>> git pull remote_name branch_name
+
+Forking -
+Forking is just like cloning. But on github machines themselves. There is a track record of how many forks are done and from where forking has been done. Forking can be done by clicking a simple button on the GitHub website.
+
+Collaborators -
+Collaborators can be added to your GitHub repository by their github usernames. adding a collaborator allows him to push changes to your github repository.
