@@ -63,8 +63,8 @@ to reset changes in file in wd,staging area as compared to last commit file-
 to show all the available branches in the git repo -
 >> git branch
 
-to create a branch with label easy_mode consisting of same code as master -
->> git branch easy_mode
+to create a branch consisting of same code as master -
+>> git branch branch_name
 
 to merge two branches. First, checkout to the branch where you want the head to be after the merge has taken place. in this case master. then merge the new feature to the master branch and delete feature branch. if however, i would want a separate easy mode of the game, i would have checked out that and merged master branch into that. and this time, i wont delete the master branch ofcourse since i need it too.-
 >> git merge master branch_to_be_merged
@@ -88,12 +88,12 @@ to view a remote repository -
 >> git remote -v
 
 to create a remote repository -
->> git remote add remote_url
+>> git remote add remote_name repo_url.git
 
 to push branch into a github remote repository -
 >> git push remote_name branch_name
 
-to pull branch from a github remote repository -
+to pull branch from a github remote repository (always make a pull request of the same branch on which you are checked out. (always try it to be master) otherwise automatics merging might take place.) -
 >> git pull remote_name branch_name
 
 Forking -
@@ -101,3 +101,19 @@ Forking is just like cloning. But on github machines themselves. There is a trac
 
 Collaborators -
 Collaborators can be added to your GitHub repository by their github usernames. adding a collaborator allows him to push changes to your github repository.
+
+to update the local copy of only the remote branch (actually called origin/master branch) but not the local master branch -
+>> git fetch remote_name
+
+actually, git pull is equal to "git fetch origin" and "git merge master origin/master". so, when you pull, first the remote branch gets updated and points to the new commit. (the local master remains as it is). then, local master branch is checked out and a merge of remote branch takes place on that. the local master points to the new merged commit now.
+
+So, why does a "git pull origin master" doesn't generate a merge commit message? reason is fast-forward merges. In a typical pull request, only github has an extra commit than the last sync. in such a case, when pull request is done, origin/master gets updated to that latest commit and master is left behind. (go in a straight line.) so commit line is something like master -> origin/master. say a->b. suppose a and b were on different branches, if we merged them, then it will make a point to show a merge message that the merge came from two different branches a and b. but there is no point in doing so if they are on the same line. because if we merge b into a, and remove label b and add label a to that (actually what fast forward merges do). we, can eventually point to every commit since there is no branching.
+
+So, you should check what method to use to pull contents from github to your local repo. If you are sure of what the changes are, simple make a pull request otherwise do stepwise.
+
+Pull requests - Separate branches with experimental features can be created and pushed into the git repo. then a pull request is made to the original person from which we have forked the repo asking him to review and merge our branch into master branch. If there are any mistakes, the OP can comment. We can fix the code, add, commit and push them to github. Automatically a new pull request will get generated with the commit message to OP.
+
+When someone else also generates a pull request, there can be a conflict between the two pull request. merge other's pull requests, then resolve the yours. It can be resolved by pulling the merged master branch from github to local pc. Merge the master into your branch and resolve the conflicts.(Dont directly merge your branch into master and resolve conflicts and push. this is not acceptable by the op.) Then push it to your repo and a new pull request will be created automatically.
+
+Summary -
+You just saw that the workflow when making changes in a separate branch is more complicated than working directly in master, especially when you need to stay up-to-date with changes others are making. Rather than simply pulling and pushing, you need to pull changes into your local master branch, merge the local master into your branch (different-oil, in our case), then push your branch to the remote before finally merging your branch into master, either locally or on GitHub.
