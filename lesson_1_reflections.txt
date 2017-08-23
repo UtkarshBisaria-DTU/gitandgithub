@@ -9,9 +9,3 @@ A good rule of thumb is to make one commit per logical change.
 git errors and warnings -
 You are in 'detached HEAD' state
 HEAD is what Git calls the commit you are currently on. You can “detach” the HEAD by switching to a previous commit, which we’ll see in the next video. Despite what it sounds like, it’s actually not a bad thing to detach the HEAD. Git just warns you so that you’ll realize you’re doing it.
-
-
-
-
-
-

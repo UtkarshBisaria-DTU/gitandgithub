@@ -1,3 +1,5 @@
+GIT COMMANDS-
+
 to spot differences between two files on linux command line -
 >> diff -u old_file.ext new_file.ext
 
@@ -76,3 +78,15 @@ to delete a branch (usually after merging) only label Will get deleted, commits 
 to visualise branch structure in a readable way-
 >> git log --graph --oneline branch1 branch2 branch3
 
+
+
+GITHUB COMMANDS
+
+to view a remote repository -
+>> git remote -v
+
+to create a remote repository -
+>> git remote add remote_name
+
+to push branch into remote repository -
+>> git push remote_name branch_name
