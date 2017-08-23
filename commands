@@ -1,0 +1,78 @@
+to spot differences between two files on linux command line -
+>> diff -u old_file.ext new_file.ext
+
+to view git commits on linux cmd line -
+>> git log
+>> git log --stat
+
+to view difference between different versions on git in cmd line -
+>> git diff old_commit_id new_commit_id
+
+to view differences in colored manner -
+>> git config --global color.ui auto
+
+to install git from command line - 
+>> sudo apt-get install git
+
+to check version of git -
+>> git --version
+
+to copy a repository from one computer to another computer along with history of commits - 
+>> git clone github_url_of_repo_to_be_cloned
+
+to roll back to a previous version of the code (basically, to find a bug)- 
+>> git checkout commit_id
+now when we will run >>git log<< , we will see that the commit to which we checked out will be the last commit in the log. all the commits above it are lost. we should have remembered the ids of those commits to roll into that.
+
+to view hidden files in the directory in command line
+>> ls -a
+
+to initialise a new git repository on your computer -
+>> git init
+
+to add a file from working directory in the staging area -
+>> git add filename.ext
+
+to remove accidentally added file in the staging area -
+>> git reset filename.ext
+
+to add your name and email address to make a commit -
+>> git config --global user.email "you@example.com"
+>> git config --global user.name "Your Name"
+
+to view status of the repository -
+>> git status
+
+to commit changes in the repository after adding to the staging area - 
+>> git commit
+>> git commit -m "type the message here"
+
+to view differences in files between working directory and staging area -
+staging area consist of files from the last commit. so, if any modification is done in file in wd, to view differences between that file and last commit's file, we compare files in wd to that of staging area because staging area consist of files from the last commit.
+>> git diff
+
+to view diff between staging area and commits - 
+this is done to make sure what actually you are comitting from staging area
+>> git diff --staged
+
+to reset changes in file in wd,staging area as compared to last commit file-
+>> git reset --hard
+
+to show all the available branches in the git repo -
+>> git branch
+
+to create a branch with label easy_mode consisting of same code as master -
+>> git branch easy_mode
+
+to merge two branches. First, checkout to the branch where you want the head to be after the merge has taken place. in this case master. then merge the new feature to the master branch and delete feature branch. if however, i would want a separate easy mode of the game, i would have checked out that and merged master branch into that. and this time, i wont delete the master branch ofcourse since i need it too.-
+>> git merge master branch_to_be_merged
+
+to show difference between a commit and its parent -
+>> git show commit_id
+
+to delete a branch (usually after merging) only label Will get deleted, commits will remain -
+>> git branch -d branch_name
+
+to visualise branch structure in a readable way-
+>> git log --graph --oneline branch1 branch2 branch3
+
