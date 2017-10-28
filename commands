@@ -1,3 +1,12 @@
+GIT CONFIG COMMANDS-
+
+to view differences in colored manner -
+>> git config --global color.ui auto
+
+to add your name and email address to make a commit -
+>> git config --global user.email "you@example.com"
+>> git config --global user.name "Your Name"
+
 GIT COMMANDS-
 
 to spot differences between two files on linux command line -
@@ -10,40 +19,21 @@ to view git commits on linux cmd line -
 to view difference between different versions on git in cmd line -
 >> git diff old_commit_id new_commit_id
 
-to view differences in colored manner -
->> git config --global color.ui auto
-
-to install git from command line - 
->> sudo apt-get install git
-
-to check version of git -
->> git --version
-
-to copy a repository from one computer to another computer along with history of commits. cloning can be done b/w two computers and github&pc - 
->> git clone github_url_of_repo_to_be_cloned
+to copy a repository from one computer to another computer along with history of commits -
+>> git clone url_of_repo
 
 to roll back to a previous version of the code (basically, to find a bug)- 
 >> git checkout commit_id
 now when we will run >>git log<< , we will see that the commit to which we checked out will be the last commit in the log. all the commits above it are lost. we should have remembered the ids of those commits to roll into that.
 
-to view hidden files in the directory in command line
->> ls -a
-
 to initialise a new git repository on your computer -
 >> git init
 
-to add a file from working directory in the staging area -
->> git add filename.ext
-
-to remove accidentally added file in the staging area -
->> git reset filename.ext
-
-to add your name and email address to make a commit -
->> git config --global user.email "you@example.com"
->> git config --global user.name "Your Name"
-
 to view status of the repository -
 >> git status
+
+to add a file from working directory in the staging area -
+>> git add filename.ext
 
 to commit changes in the repository after adding to the staging area - 
 >> git commit
@@ -57,6 +47,9 @@ to view diff between staging area and commits -
 this is done to make sure what actually you are comitting from staging area
 >> git diff --staged
 
+to remove accidentally added file in the staging area -
+>> git reset filename.ext
+
 to reset changes in file in wd,staging area as compared to last commit file-
 >> git reset --hard
 
@@ -66,42 +59,50 @@ to show all the available branches in the git repo -
 to create a branch consisting of same code as master -
 >> git branch branch_name
 
+to go into a branch -
+>> git checkout branch_name
+
 to merge two branches. First, checkout to the branch where you want the head to be after the merge has taken place. in this case master. then merge the new feature to the master branch and delete feature branch. if however, i would want a separate easy mode of the game, i would have checked out that and merged master branch into that. and this time, i wont delete the master branch ofcourse since i need it too.-
 >> git merge master branch_to_be_merged
-
-to show difference between a commit and its parent -
->> git show commit_id
 
 to delete a branch (usually after merging) only label Will get deleted, commits will remain -
 >> git branch -d branch_name
 
+to show difference between a commit and its parent -
+>> git show commit_id
+
 to visualise branch structure in a readable way-
 >> git log --graph --oneline branch1 branch2 branch3
 
+to see commit history of a particular branch -
+>> git log branch_name
 
 
 GITHUB COMMANDS
 
-A remote in a local repo is actually a reference to the github repository. It is used to push and pull from github. It is also used to clone. A remote repository called origin pointing to the repo to be cloned automatically gets setup. So, cloning is effectively equal to creating a remote pointing to the repo and pulling changes to the remote.
+A remote in a local repo is actually a reference to the github repository. It is used to push and pull from github. When we pull, a remote origin pointing to the repo to be cloned automatically gets setup. So, cloning is effectively equal to creating a remote pointing to the repo and pulling changes to the remote.
 
-to view a remote repository -
+to view remotes -
 >> git remote -v
 
-to create a remote repository -
+to create a remote -
 >> git remote add remote_name repo_url.git
 
-to push branch into a github remote repository -
+to push branch to github -
 >> git push remote_name branch_name
 
-to pull branch from a github remote repository (always make a pull request of the same branch on which you are checked out. (always try it to be master) otherwise automatics merging might take place.) -
+to pull branch from github (always make a pull request of the same branch on which you are checked out. (always try it to be master) otherwise automatic merging might take place.) -
 >> git pull remote_name branch_name
 
 Forking -
-Forking is just like cloning. But on github machines themselves. There is a track record of how many forks are done and from where forking has been done. Forking can be done by clicking a simple button on the GitHub website.
+Forking is just like cloning, but on github machines themselves.
 
 Collaborators -
 Collaborators can be added to your GitHub repository by their github usernames. adding a collaborator allows him to push changes to your github repository.
 
+3 types of conflicts --
+
+1. When there is a different commit in both local repo and github repo separately
 to update the local copy of only the remote branch (actually called origin/master branch) but not the local master branch -
 >> git fetch remote_name
 
@@ -117,3 +118,16 @@ When someone else also generates a pull request, there can be a conflict between
 
 Summary -
 You just saw that the workflow when making changes in a separate branch is more complicated than working directly in master, especially when you need to stay up-to-date with changes others are making. Rather than simply pulling and pushing, you need to pull changes into your local master branch, merge the local master into your branch (different-oil, in our case), then push your branch to the remote before finally merging your branch into master, either locally or on GitHub.
+
+2.
+When a contributor commit pull request generates a merge conflict with your pull request.
+First, merge the contributor's pull request. Then pull the master branch. Merge it into your branch. Resolve the merge conflict.
+and create a new pull request.
+
+3.
+Keeping fork up-to-date -
+If a pull request is generated to the original repository which was forked, there might be a possibility that the master branch
+of that repo might have changed the same lines. This might create a merge conflict. To resolve this, create a remote to the
+original repo name 'upstream' and run git pull upstream master. Then, merge the master branch to your branch and resolve the 
+merge conflict. Then push to create a new pull request.
+
